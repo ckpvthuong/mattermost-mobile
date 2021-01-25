@@ -7,6 +7,7 @@ import enLocaleData from 'react-intl/locale-data/en';
 import moment from 'moment';
 
 import en from '@assets/i18n/en.json';
+import vn from '@assets/i18n/vn.json';
 
 export const DEFAULT_LOCALE = 'en';
 
@@ -93,8 +94,11 @@ function loadTranslation(locale) {
             localeData = require('react-intl/locale-data/zh');
             momentData = require('moment/locale/zh-tw');
             break;
+        case 'vn':
+            translations = require('@assets/i18n/vn.json');
+            localeData = enLocaleData;
         default:
-            translations = en;
+            translations = vn;
             localeData = enLocaleData;
             break;
         }
