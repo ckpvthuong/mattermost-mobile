@@ -649,7 +649,20 @@
     "user.settings.push_notification.disabled_long": "Thông báo đẩy không được bật.",
     "user.settings.push_notification.offline": "Ngoại tuyến",
     "user.settings.push_notification.online": "Trực tuyến, vắng mặt hoặc ngoại tuyến",
-    "web.root.signup_info": "Tất cả giao tiếp nhóm ở một nơi. Có thể tìm kiếm và truy cập ở bất cứ đâu"
+    "web.root.signup_info": "Tất cả giao tiếp nhóm ở một nơi. Có thể tìm kiếm và truy cập ở bất cứ đâu",
+
+    "signup.title": "Đăng ký",
+    "signup.password": "Mật khẩu",
+    "signup.firstname": "Họ và Tên đệm",
+    "signup.lastname": "Tên",
+    "signup.noEmail": "Vui lòng nhập email",
+    "signup.noFistName": "Vui lòng nhập họ và tên đệm",
+    "signup.noLastName": "Vui lòng nhập tên",
+    "signup.noPassword": "Vui lòng nhập mật khẩu",
+    "signup.emailExists": "Tài khoản email đã tồn tại",
+    "signup.invalidPasword": "Mật khẩu không hợp lệ",
+    "signup.checkEmail": "Đăng ký thành công! Vui lòng kiểm tra email bạn để xác nhận!",
+    "signup.success": "Thành công"
   }
   
   

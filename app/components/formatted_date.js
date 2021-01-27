@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import {Text} from 'react-native';
 
+
 export default class FormattedDate extends React.PureComponent {
     static propTypes = {
         format: PropTypes.string,
@@ -25,6 +26,8 @@ export default class FormattedDate extends React.PureComponent {
             ...props
         } = this.props;
 
+        
+       
         let formattedDate = moment(value).format(format);
         if (timeZone) {
             formattedDate = moment.tz(value, timeZone).format(format);

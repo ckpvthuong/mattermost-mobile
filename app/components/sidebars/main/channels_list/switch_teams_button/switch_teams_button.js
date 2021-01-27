@@ -140,10 +140,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             backgroundColor: theme.sidebarHeaderTextColor,
             borderRadius: 2,
             flexDirection: 'row',
-            justifyContent: 'center',
+            
             height: 36,
             marginRight: 12,
-            width: 57,
+            width: 96
         },
         teamIcon: {
             width: 24,
@@ -153,7 +153,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             justifyContent: 'center',
             height: 24,
-            width: 24,
+            width: 48,
         },
         teamIconText: {
             fontFamily: 'Open Sans',

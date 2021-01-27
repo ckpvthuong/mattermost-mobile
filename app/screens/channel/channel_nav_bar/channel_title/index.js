@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 
 import {General} from '@mm-redux/constants';
 import {getCurrentChannel, getMyCurrentChannelMembership, getCurrentChannelStats} from '@mm-redux/selectors/entities/channels';
+import {getCurrentTeam} from '@mm-redux/selectors/entities/teams';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentUserId, getUser} from '@mm-redux/selectors/entities/users';
 import {getUserIdFromChannelName, isChannelMuted} from '@mm-redux/utils/channel_utils';
@@ -15,6 +16,7 @@ import ChannelTitle from './channel_title';
 
 function mapStateToProps(state) {
     const currentChannel = getCurrentChannel(state);
+    const currentTeam = getCurrentTeam(state);
     const currentUserId = getCurrentUserId(state);
     const myChannelMember = getMyCurrentChannelMembership(state);
     const stats = getCurrentChannelStats(state) || {member_count: 0, guest_count: 0};
@@ -30,7 +32,7 @@ function mapStateToProps(state) {
 
     return {
         isSelfDMChannel,
-        currentChannelName: currentChannel ? currentChannel.display_name : '',
+        currentChannelName: currentChannel ? currentChannel.display_name + ` ( ${currentTeam.display_name} )`: '',
         isArchived: currentChannel ? currentChannel.delete_at !== 0 : false,
         displayName: state.views.channel.displayName,
         channelType: currentChannel?.type,

@@ -3,12 +3,11 @@
 
 import 'intl';
 import {addLocaleData} from 'react-intl';
+
 import enLocaleData from 'react-intl/locale-data/en';
 import moment from 'moment';
 
 import en from '@assets/i18n/en.json';
-import vn from '@assets/i18n/vn.json';
-
 export const DEFAULT_LOCALE = 'en';
 
 addLocaleData(enLocaleData);
@@ -90,16 +89,17 @@ function loadTranslation(locale) {
             momentData = require('moment/locale/zh-cn');
             break;
         case 'zh-TW':
-            translations = require('@assets/i18n/zh-TW.json');
             localeData = require('react-intl/locale-data/zh');
             momentData = require('moment/locale/zh-tw');
             break;
-        case 'vn':
-            translations = require('@assets/i18n/vn.json');
-            localeData = enLocaleData;
+        case 'vi':
+            translations = require('@assets/i18n/vi.json');
+            localeData = require('react-intl/locale-data/vi');
+            momentData = require('moment/locale/vi');
         default:
-            translations = vn;
-            localeData = enLocaleData;
+            translations = require('@assets/i18n/vi.json');
+            localeData = require('react-intl/locale-data/vi');
+            momentData = require('moment/locale/vi');
             break;
         }
 

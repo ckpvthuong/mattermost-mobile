@@ -70,8 +70,9 @@ export default class TeamIcon extends React.PureComponent {
                 <Text
                     testID={contentTestID}
                     style={[styles.text, styleText]}
+                    numberOfLines={1}
                 >
-                    {displayName?.substr(0, 2).toUpperCase()}
+                    {displayName}
                 </Text>
             );
         } else {
