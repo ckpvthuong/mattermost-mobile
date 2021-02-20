@@ -25,6 +25,7 @@ export default class FormattedTime extends React.PureComponent {
         } = this.props;
 
         let format = 'H:mm';
+
         if (hour12) {
             const localeFormat = moment.localeData().longDateFormat('LT');
             format = localeFormat?.includes('A') ? localeFormat : 'h:mm A';

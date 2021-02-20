@@ -8,7 +8,7 @@ import enLocaleData from 'react-intl/locale-data/en';
 import moment from 'moment';
 
 import en from '@assets/i18n/en.json';
-export const DEFAULT_LOCALE = 'en';
+export const DEFAULT_LOCALE = 'vi';
 
 addLocaleData(enLocaleData);
 
@@ -96,6 +96,7 @@ function loadTranslation(locale) {
             translations = require('@assets/i18n/vi.json');
             localeData = require('react-intl/locale-data/vi');
             momentData = require('moment/locale/vi');
+            break;
         default:
             translations = require('@assets/i18n/vi.json');
             localeData = require('react-intl/locale-data/vi');

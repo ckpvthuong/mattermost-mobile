@@ -34,6 +34,7 @@ import {tryOpenURL} from '@utils/url';
 import {isGuest} from '@utils/users';
 
 import UserProfileRow from './user_profile_row';
+import UserProfileRowCus from './user_profile_row_cus';
 
 export default class UserProfile extends PureComponent {
     static propTypes = {
@@ -322,6 +323,28 @@ export default class UserProfile extends PureComponent {
         );
     }
 
+    goToEnterIntro = () => {
+        goToScreen('EnterIntro', 'Chỉnh sửa lời giới thiệu');
+    }
+
+    renderIntro = (theme) => {
+        if (this.props.isMyUser){
+            return (
+                
+                    <UserProfileRowCus
+                        action={this.goToEnterIntro}
+                        defaultMessage="add your introduce"
+                        icon='pencil-outline'
+                        iconSize={18}
+                        textId={t('user_profile.editIntro')}
+                        theme={theme}
+                        cus={true}
+                    />
+    
+            );
+        }
+    }
+
     render() {
         const {theme, user} = this.props;
         const style = createStyleSheet(theme);
@@ -347,10 +370,13 @@ export default class UserProfile extends PureComponent {
                         />
                         {this.getDisplayName()}
                         <Text style={style.username}>{`@${user.username}`}</Text>
+                    <Text style={{marginTop: 20, fontSize: 16, color: theme.buttonBg, fontStyle: 'italic'}}>Hello World...</Text>
                     </View>
+                    
                     <View style={style.divider}/>
                     {this.renderDetailsBlock(style)}
                     <View style={style.divider}/>
+                    
                     <UserProfileRow
                         action={this.sendMessage}
                         defaultMessage='Send Message'
@@ -418,7 +444,8 @@ const createStyleSheet = makeStyleSheetFromTheme((theme) => {
             marginLeft: 16,
             marginRight: 22,
             backgroundColor: '#EBEBEC',
-        },
+        }
+        
     };
 });
 
