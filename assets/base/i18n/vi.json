@@ -451,7 +451,7 @@
   "mobile.routes.table": "Table",
   "mobile.routes.thread": "{channelName} Chủ đề",
   "mobile.routes.thread_dm": "Chủ đề tin nhắn trực tiếp",
-  "mobile.routes.user_profile": "Thôn tin cá nhân",
+  "mobile.routes.user_profile": "Thông tin cá nhân",
   "mobile.routes.user_profile.edit": "Chỉnh sửa",
   "mobile.routes.user_profile.local_time": "GIỜ ĐỊA PHƯƠNG",
   "mobile.routes.user_profile.send_message": "Gửi tin nhắn",

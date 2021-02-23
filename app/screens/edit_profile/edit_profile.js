@@ -138,6 +138,7 @@ export default class EditProfile extends PureComponent {
     }
 
     navigationButtonPressed({buttonId}) {
+        console.log("aaaa")
         switch (buttonId) {
         case 'update-profile':
             this.submitUser();

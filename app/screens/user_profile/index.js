@@ -13,7 +13,7 @@ import Preferences from '@mm-redux/constants/preferences';
 import {loadBot} from '@mm-redux/actions/bots';
 import {getBotAccounts} from '@mm-redux/selectors/entities/bots';
 import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
-
+import {updateUser} from 'app/actions/views/edit_profile';
 import UserProfile from './user_profile';
 
 function mapStateToProps(state, ownProps) {
@@ -42,6 +42,7 @@ function mapDispatchToProps(dispatch) {
             makeDirectChannel,
             setChannelDisplayName,
             loadBot,
+            updateUser
         }, dispatch),
     };
 }

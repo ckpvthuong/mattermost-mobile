@@ -35,6 +35,8 @@ import {isGuest} from '@utils/users';
 
 import UserProfileRow from './user_profile_row';
 import UserProfileRowCus from './user_profile_row_cus';
+import TouchableWithFeedback from '@components/touchable_with_feedback';
+import { style } from '@screens/channel/channel_base';
 
 export default class UserProfile extends PureComponent {
     static propTypes = {
@@ -324,14 +326,18 @@ export default class UserProfile extends PureComponent {
     }
 
     goToEnterIntro = () => {
-        goToScreen('EnterIntro', 'Chỉnh sửa lời giới thiệu');
+        const {user: currentUser} = this.props;
+        
+        const updateUser = this.props.actions.updateUser;
+        const passProps = {currentUser, updateUser}
+        goToScreen('EnterIntro', 'Chỉnh sửa lời giới thiệu', passProps);
     }
 
-    renderIntro = (theme) => {
-        if (this.props.isMyUser){
+    renderIntro = (theme,style) => {
+        let action = this.props.isMyUser ? this.goToEnterIntro : null
+        if(this.props.isMyUser && this.props.user.introduce === ""){
             return (
-                
-                    <UserProfileRowCus
+                <UserProfileRowCus
                         action={this.goToEnterIntro}
                         defaultMessage="add your introduce"
                         icon='pencil-outline'
@@ -340,8 +346,14 @@ export default class UserProfile extends PureComponent {
                         theme={theme}
                         cus={true}
                     />
-    
-            );
+            )
+        } else {
+            return (
+                
+                <TouchableWithFeedback onPress={action}>
+                    <Text style={style}>{this.props.user.introduce}</Text>
+                </TouchableWithFeedback>
+            )
         }
     }
 
@@ -370,7 +382,8 @@ export default class UserProfile extends PureComponent {
                         />
                         {this.getDisplayName()}
                         <Text style={style.username}>{`@${user.username}`}</Text>
-                    <Text style={{marginTop: 20, fontSize: 16, color: theme.buttonBg, fontStyle: 'italic'}}>Hello World...</Text>
+
+                    {this.renderIntro(theme,style.introduce)}
                     </View>
                     
                     <View style={style.divider}/>
@@ -444,8 +457,13 @@ const createStyleSheet = makeStyleSheetFromTheme((theme) => {
             marginLeft: 16,
             marginRight: 22,
             backgroundColor: '#EBEBEC',
+        },
+        introduce :{
+            marginTop: 20, 
+            fontSize: 16, 
+            color: theme.buttonBg, 
+            fontStyle: 'italic'
         }
-        
     };
 });
 

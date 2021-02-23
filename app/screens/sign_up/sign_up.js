@@ -299,41 +299,36 @@ export default class SignUp extends PureComponent {
     signUp = async () => {
         const {isLoading} = this.state;
         if (isLoading) {
+            let usernameFromEmail = this.email.match(/^([^@]*)@/)[1];
+            let usernameFromName = makeUsername(this.firstName+this.lastName);
+            let username = usernameFromName == "" ? usernameFromEmail : usernameFromName
+            
 
-            let username = makeUsername(this.firstName+this.lastName);
+            let result;
             let count = 0;
-
             while(true){
                 try { 
-                    username = count == 0 ? username : username + count;
+                    let _username = count == 0 ? username : username + count;
+                    let userProfile = {
+                        email: this.email,
+                        username: _username,
+                        password: this.password,
+                        first_name: this.firstName,
+                        last_name: this.lastName
+                    }
                     
-                    await Client4.getUserByUsername(username);
-                    
-                    count++;
-                    
-                } catch (error) {
-                                     
+                    result = await Client4.createUser(userProfile);
                     break;
+                } catch (error) {
+                    if(error.server_error_id === "app.user.save.username_exists.app_error"){
+                        count++;
+                    }
+                    else {
+                        result = {error}
+                        break;
+                    }
                 }
             }
-
-
-            const userProfile = {
-                email: this.email,
-                username: username,
-                password: this.password,
-                first_name: this.firstName,
-                last_name: this.lastName
-            }
-            
-            let result;
-
-            try {
-                result = await Client4.createUser(userProfile);
-            } catch (error) {
-                result = {error}
-            }
-
             if (this.checkSignUpResponse(result)) {
                 this.handleAlert();
             }
@@ -351,7 +346,7 @@ export default class SignUp extends PureComponent {
         Alert.alert(
                 successTitle, 
                 successMess, 
-                [{text: 'OK', onPress: () => goToScreen(screen,title)}] );
+                [{text: 'OK', onPress: () => popTopScreen()}] );
     }
 
     render() {
