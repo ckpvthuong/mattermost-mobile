@@ -381,7 +381,7 @@ export default class UserProfile extends PureComponent {
                             statusSize={36}
                         />
                         {this.getDisplayName()}
-                        <Text style={style.username}>{`@${user.username}`}</Text>
+                       
 
                     {this.renderIntro(theme,style.introduce)}
                     </View>
@@ -466,4 +466,6 @@ const createStyleSheet = makeStyleSheetFromTheme((theme) => {
         }
     };
 });
+
+// <Text style={style.username}>{`${user.username}`}</Text>
 

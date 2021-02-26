@@ -58,6 +58,7 @@ const AtMentionItem = (props) => {
         theme,
         userId,
         username,
+        email
     } = props;
 
     const completeMention = () => {
@@ -126,7 +127,7 @@ const AtMentionItem = (props) => {
                     style={style.rowUsername}
                     numberOfLines={1}
                 >
-                    {` @${username}`}
+                    {` ${email}`}
                 </Text>
             </View>
         </TouchableWithFeedback>

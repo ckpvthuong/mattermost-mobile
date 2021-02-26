@@ -50,15 +50,15 @@ export default class UserListRow extends React.PureComponent {
             user,
         } = this.props;
 
-        const {id, username} = user;
+        const {id, username, email} = user;
         const style = getStyleFromTheme(theme);
 
-        let usernameDisplay = `@${username}`;
+        let usernameDisplay = `${email}`;
         if (isMyUser) {
             usernameDisplay = formatMessage({
                 id: 'mobile.more_dms.you',
-                defaultMessage: '@{username} - you',
-            }, {username});
+                defaultMessage: '@{email} - you',
+            }, {email});
         }
 
         const teammateDisplay = displayUsername(user, teammateNameDisplay);

@@ -610,7 +610,7 @@ export default class EditProfile extends PureComponent {
                         <View style={style.separator}/>
                         {this.renderLastNameSettings()}
                         <View style={style.separator}/>
-                        {this.renderUsernameSettings()}
+                        
                         <View style={style.separator}/>
                         {this.renderEmailSettings()}
                         <View style={style.separator}/>
@@ -661,3 +661,5 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
     };
 });
+
+//{this.renderUsernameSettings()}
