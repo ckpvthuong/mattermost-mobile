@@ -50,13 +50,13 @@ export default class UserInfo extends PureComponent {
                     />
                     <View style={style.wrapper}>
                       
-                        {Boolean(fullName) &&
+                        {
                         <View>
                             <Text
                                 style={style.fullName}
                                 numberOfLines={1}
                             >
-                                {fullName}
+                                {fullName || user.email}
                             </Text>
                         </View>
                         }

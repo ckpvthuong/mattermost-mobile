@@ -61,8 +61,9 @@ export default class UserListRow extends React.PureComponent {
             }, {email});
         }
 
-        const teammateDisplay = displayUsername(user, teammateNameDisplay);
-        const showTeammateDisplay = teammateDisplay !== username;
+        let teammateDisplay = displayUsername(user, teammateNameDisplay);
+            teammateDisplay = teammateDisplay || username
+        //const showTeammateDisplay = teammateDisplay !== username;
 
         return (
             <View style={style.container}>
@@ -89,8 +90,11 @@ export default class UserListRow extends React.PureComponent {
                                     ellipsizeMode='tail'
                                     numberOfLines={1}
                                 >
-                                    {usernameDisplay}
+                                    {teammateDisplay}
                                 </Text>
+                                {user.status_string !== "" && 
+                                    <Text style={style.statusString}> - {user.status_string}</Text>
+                                }
                                 <BotTag
                                     show={Boolean(user.is_bot)}
                                     theme={theme}
@@ -101,17 +105,17 @@ export default class UserListRow extends React.PureComponent {
                                 />
                             </View>
                         </View>
-                        {showTeammateDisplay &&
-                        <View>
-                            <Text
-                                style={style.displayName}
-                                ellipsizeMode='tail'
-                                numberOfLines={1}
-                            >
-                                {teammateDisplay}
-                            </Text>
-                        </View>
-                        }
+    
+                            <View>
+                                <Text
+                                    style={style.displayName}
+                                    ellipsizeMode='tail'
+                                    numberOfLines={1}
+                                >
+                                    {usernameDisplay}
+                                </Text>
+                            </View>
+                            
                         {user.delete_at > 0 &&
                         <View>
                             <Text
@@ -163,5 +167,21 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             fontSize: 12,
             color: changeOpacity(theme.centerChannelColor, 0.5),
         },
+        statusString: {
+            color: theme.buttonBg,
+            fontStyle: "italic"
+        }
     };
 });
+
+// {showTeammateDisplay &&
+//     <View>
+//         <Text
+//             style={style.displayName}
+//             ellipsizeMode='tail'
+//             numberOfLines={1}
+//         >
+//             {teammateDisplay}
+//         </Text>
+//     </View>
+//     }

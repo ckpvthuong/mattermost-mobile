@@ -323,7 +323,7 @@
   "mobile.more_dms.one_more": "Bạn chỉ có thể thêm một người dùng nữa",
   "mobile.more_dms.start": "Bắt đầu",
   "mobile.more_dms.title": "Cuộc hội thoái mới",
-  "mobile.more_dms.you": "@{email} - bạn",
+  "mobile.more_dms.you": "{email} - bạn",
   "mobile.more_messages_button.text": "{count} {isInitialMessage, select, true {new} other {more new}} {count, plural, one {message} other {messages}}",
   "mobile.notice_mobile_link": "ứng dụng di động",
   "mobile.notice_platform_link": "máy chủ",
@@ -664,6 +664,7 @@
   "signup.checkEmail": "Đăng ký thành công! Vui lòng kiểm tra email bạn để xác nhận!",
   "signup.success": "Thành công",
   "user_profile.editIntro": "Thêm lời giới thiệu bản thân",
-  "user_profile.editStatus": "Thêm trạng thái"
+  "user_profile.editStatus": "Thêm trạng thái",
+  "mobile.components.select_server_view.siteUrlPlaceholder": "https://mattermost-vnu.herokuapp.com"
 }
 

@@ -28,7 +28,7 @@ export function displayUsername(
         } else if (teammateNameDisplay === Preferences.DISPLAY_PREFER_FULL_NAME) {
             name = getFullName(user);
         } else {
-            name = user.username;
+            name = user.email;
         }
 
         if (!name || name.trim().length === 0) {
