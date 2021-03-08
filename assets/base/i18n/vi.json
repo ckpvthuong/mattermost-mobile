@@ -663,6 +663,7 @@
   "signup.invalidPasword": "Mật khẩu không hợp lệ",
   "signup.checkEmail": "Đăng ký thành công! Vui lòng kiểm tra email bạn để xác nhận!",
   "signup.success": "Thành công",
-  "user_profile.editIntro": "Thêm lời giới thiệu bản thân"
+  "user_profile.editIntro": "Thêm lời giới thiệu bản thân",
+  "user_profile.editStatus": "Thêm trạng thái"
 }
 

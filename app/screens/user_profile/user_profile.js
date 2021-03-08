@@ -333,6 +333,15 @@ export default class UserProfile extends PureComponent {
         goToScreen('EnterIntro', 'Chỉnh sửa lời giới thiệu', passProps);
     }
 
+    goToEnterStatusString = () => {
+        const {user: currentUser} = this.props;
+        
+        const updateUser = this.props.actions.updateUser;
+        const editStatus = true
+        const passProps = {currentUser, updateUser, editStatus}
+        goToScreen('EnterIntro', 'Chỉnh sửa trạng thái', passProps);
+    }
+
     renderIntro = (theme,style) => {
         let action = this.props.isMyUser ? this.goToEnterIntro : null
         if(this.props.isMyUser && this.props.user.introduce === ""){
@@ -352,6 +361,30 @@ export default class UserProfile extends PureComponent {
                 
                 <TouchableWithFeedback onPress={action}>
                     <Text style={style}>{this.props.user.introduce}</Text>
+                </TouchableWithFeedback>
+            )
+        }
+    }
+
+    renderStatusString = (theme,style) => {
+        let action = this.props.isMyUser ? this.goToEnterStatusString : null
+        if(this.props.isMyUser && this.props.user.status_string=== ""){
+            return (
+                <UserProfileRowCus
+                        action={this.goToEnterStatusString}
+                        defaultMessage="add your status"
+                        icon='pencil-outline'
+                        iconSize={18}
+                        textId={t('user_profile.editStatus')}
+                        theme={theme}
+                        cus={true}
+                    />
+            )
+        } else {
+            return (
+                
+                <TouchableWithFeedback onPress={action}>
+                    <Text style={style}>{this.props.user.status_string}</Text>
                 </TouchableWithFeedback>
             )
         }
@@ -384,6 +417,7 @@ export default class UserProfile extends PureComponent {
                        
 
                     {this.renderIntro(theme,style.introduce)}
+                    {this.renderStatusString(theme,style.introduce)}
                     </View>
                     
                     <View style={style.divider}/>

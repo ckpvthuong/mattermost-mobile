@@ -1,3 +1,5 @@
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
 import React, {PureComponent} from 'react';
 import {TextInput, StyleSheet, View, Alert} from 'react-native';
 import {preventDoubleTap} from 'app/utils/tap';
@@ -22,30 +24,30 @@ export default class EnterIntro extends PureComponent {
 
     constructor(props) {
         super(props);
-        this.intro = props.currentUser.introduce;
+        this.intro = !props.editStatus ? props.currentUser.introduce :
+            props.currentUser.status_string;
         const buttons = {
             rightButtons: [this.rightButton],
         };
-        
+
         setButtons(props.componentId, buttons);
-        
     }
     componentDidMount() {
         this.navigationEventListener = Navigation.events().bindComponent(this);
     }
-    
-    submitUser = preventDoubleTap(async() => {
-        
-        const {error} = await this.props.updateUser({introduce: this.intro});
-            if (error) {
-                this.handleRequestError(error);
-                return;
-            }
+
+    submitUser = preventDoubleTap(async () => {
+        const infoUpdate = !this.props.editStatus ? {introduce: this.intro} :
+            {status_string: this.intro};
+        const {error} = await this.props.updateUser(infoUpdate);
+        if (error) {
+            this.handleRequestError(error);
+            return;
+        }
         popTopScreen();
     })
 
     navigationButtonPressed({buttonId}) {
-        console.log("ahjhj")
         switch (buttonId) {
         case 'save':
             this.submitUser();
@@ -56,8 +58,6 @@ export default class EnterIntro extends PureComponent {
         }
     }
 
-
-   
     handleRequestError = (error) => {
         Alert.alert(error.message);
     }
@@ -68,8 +68,10 @@ export default class EnterIntro extends PureComponent {
                     style={style.textarea}
                     multiline={true}
                     numberOfLines={4}
-                    placeholder={this.intro === "" ? "Thêm lời giới thiệu của bạn" : null}
-                    onChangeText={(text) => {this.intro = text}}
+                    placeholder={this.intro === '' ? 'Thêm lời giới thiệu của bạn' : null}
+                    onChangeText={(text) => {
+                        this.intro = text;
+                    }}
                     defaultValue={this.intro}
                 />
             </View>
