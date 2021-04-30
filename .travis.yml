@@ -1,0 +1,16 @@
+- stage: Build and Deploy Android 🤖
+  if: branch = master AND type = push
+  language: android
+  jdk: oraclejdk8
+  android:
+    components:
+      - tools
+      - platform-tools
+      - android-29
+      - extra-google-m2repository
+      - extra-google-google_play_services
+  before_install:
+    - nvm install 12.18.0
+    - gem install bundler
+    - bundle install
+  install: npm run build:android
