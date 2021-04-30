@@ -1,16 +1,33 @@
-- stage: Build and Deploy Android 🤖
-  if: branch = master AND type = push
-  language: android
-  jdk: oraclejdk8
-  android:
-    components:
-      - tools
-      - platform-tools
-      - android-29
-      - extra-google-m2repository
-      - extra-google-google_play_services
-  before_install:
-    - nvm install 12.18.0
-    - gem install bundler
-    - bundle install
-  install: npm run build:android
+
+
+jobs:
+  include:
+    - stage: Build and Deploy Android 🤖
+      if: branch = master AND type = push
+      language: android
+      jdk: oraclejdk8
+      android:
+        components:
+          - tools
+          - platform-tools
+          - android-29
+          - extra-google-m2repository
+          - extra-google-google_play_services
+      before_install:
+        - yes | sdkmanager "platforms;android-29"
+        - nvm install 12.18.0
+        - gem install bundler
+      install: 
+        - npm ci
+      script:
+        - echo $BASE64KEY | base64 -d > $HOME/my-release-key.keystore
+        - echo MATTERMOST_RELEASE_STORE_FILE=$HOME/my-release-key.keystore >> $HOME/.gradle/gradle.properties
+        - echo MATTERMOST_RELEASE_KEY_ALIAS=$MYKEYNAME >> $HOME/.gradle/gradle.properties
+        - echo MATTERMOST_RELEASE_PASSWORD=$MYPASSWORD >> $HOME/.gradle/gradle.properties
+        - export BUILD_FOR_RELEASE=true
+        - npm run build:android
+deploy:
+  provider: releases
+  api_key: ${github_token}
+  file: "./Mattermost_Beta.apk"
+  skip_cleanup: true
